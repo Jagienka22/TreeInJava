@@ -10,8 +10,7 @@ import java.util.List;
  */
 public class Tree {
     int value;
-    Tree left;
-    Tree right;
+    List<Tree> children = new ArrayList<>();
 
 
     public Tree(int i) {
@@ -20,23 +19,27 @@ public class Tree {
 
     public Tree(int i, Tree tree) {
         value = i;
-        left = tree;
+        children.add(tree);
     }
+
 
     public Tree(int i, Tree left, Tree right) {
         value = i;
-        this.left = left;
-        this.right = right;
+        children.add(left);
+        children.add(right);
+    }
+
+    public Tree(int i, List<Tree> lista) {
+        value = i;
+        children = lista;
     }
 
 
-    public int sum(){
+    public int sum() {
         int suma = value;
-        if( left != null){
-            suma = suma + left.sum();
+        for(int j = 0; j < children.size(); j++ ){
+            suma += children.get(j).sum();
         }
-        if(right != null )
-            suma = suma + right.sum();
         return suma;
     }
 
@@ -44,40 +47,32 @@ public class Tree {
     public String toString() {
         return "Tree{" +
                 "value=" + value +
-                ", left=" + left +
-                ", right=" + right +
+                ", children=" + children +
                 '}';
     }
 
     public double average() {
-        if(numberOfElements() != 0)
-           return ((double)sum())/numberOfElements();
+        if (numberOfElements() != 0)
+            return ((double) sum()) / numberOfElements();
         else
             return 0;
     }
 
-    public int numberOfElements(){
+    public int numberOfElements() {
         int number = 1;
-        if(left!= null){
-            number = number + left.numberOfElements();
-        }
-        if(right != null){
-            number = number + right.numberOfElements();
+        for(int j = 0; j < children.size(); j++ ){
+            number += children.get(j).numberOfElements();
         }
         return number;
     }
 
 
-    public List<Integer> allValues(){
+    public List<Integer> allValues() {
         List<Integer> list = new ArrayList<>();
         list.add(value);
-        if(left != null){
-            list.addAll(left.allValues());
+        for(int j = 0; j < children.size(); j++ ){
+            list.addAll(children.get(j).allValues());
         }
-        if(right != null){
-           list.addAll(right.allValues());
-        }
-
         return list;
     }
 
@@ -88,11 +83,11 @@ public class Tree {
         List<Integer> list = allValues();
         Collections.sort(list);
 
-        if(list.size() % 2 == 0){
-            srednia = list.get(list.size()/2) + list.get((list.size()/2)-1);
-            mediana = srednia/2.0;
-        } else{
-            mediana = list.get(list.size()/2);
+        if (list.size() % 2 == 0) {
+            srednia = list.get(list.size() / 2) + list.get((list.size() / 2) - 1);
+            mediana = srednia / 2.0;
+        } else {
+            mediana = list.get(list.size() / 2);
         }
 
         return mediana;

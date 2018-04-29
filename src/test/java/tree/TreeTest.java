@@ -27,7 +27,7 @@ public class TreeTest {
     }
 
     public void sumaDużegoDrzewa(){
-        Assert.assertEquals(new Tree(5, new Tree(3, new Tree(2), new Tree(5)), new Tree(7, new Tree(1), new Tree(0, new Tree(2), new Tree(8, null, new Tree(5))))).sum(), 38);
+        Assert.assertEquals(new Tree(5, new Tree(3, new Tree(2), new Tree(5)), new Tree(7, new Tree(1), new Tree(0, new Tree(2), new Tree(8, new Tree(5))))).sum(), 38);
     }
 
     public void sredniaPustegoDrzewa(){
@@ -42,13 +42,15 @@ public class TreeTest {
         Assert.assertEquals(new Tree(1, new Tree(7)).average(), 4.0);
     }
 
+
     public void sredniaDrzewaZDwomaDziecmi(){
         Assert.assertEquals(new Tree(2, new Tree(7), new Tree(3)).average(), 4.0);
     }
 
     public void sredniaDuzegoDrzewa(){
-        Assert.assertEquals(new Tree(5, new Tree(3, new Tree(2), new Tree(5)), new Tree(7, new Tree(1), new Tree(0, new Tree(2), new Tree(8, null, new Tree(5))))).average(), 3.8);
+        Assert.assertEquals(new Tree(5, new Tree(3, new Tree(2), new Tree(5)), new Tree(7, new Tree(1), new Tree(0, new Tree(2), new Tree(8, new Tree(5))))).average(), 3.8);
     }
+
 
     public void medianaPustegoDrzewa(){
         Assert.assertEquals(new Tree(0).median(), 0.0);
@@ -67,6 +69,7 @@ public class TreeTest {
     }
 
     public void medianaDuzegoDrzewa(){
-        Assert.assertEquals(new Tree(5, new Tree(3, new Tree(2), new Tree(5)), new Tree(7, new Tree(1), new Tree(0, new Tree(2), new Tree(8, null, new Tree(5))))).median(), 4.0);
+        Assert.assertEquals(new Tree(5, new Tree(3, new Tree(2), new Tree(5)), new Tree(7, new Tree(1), new Tree(0, new Tree(2), new Tree(8, new Tree(5))))).median(), 4.0);
     }
+
 }
